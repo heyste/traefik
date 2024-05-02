@@ -34,7 +34,7 @@ import (
 )
 
 const (
-	k3sImage          = "docker.io/rancher/k3s:v1.29.3-k3s1"
+	k3sImage          = "docker.io/rancher/k3s:v1.29.4-k3s1"
 	traefikImage      = "traefik/traefik:latest"
 	traefikDeployment = "deployments/traefik"
 	traefikNamespace  = "traefik"
@@ -265,4 +265,6 @@ func (s *K8sConformanceSuite) TestK8sGatewayAPIConformance() {
 	outFile := filepath.Join("conformance-reports", fmt.Sprintf("traefik-traefik-%d.yaml", time.Now().UnixNano()))
 	require.NoError(s.T(), os.WriteFile(outFile, rawReport, 0o600))
 	s.T().Logf("Report written to: %s", outFile)
+	s.T().Logf("Cluster ready to be inspected. Test on hold for 10 hours...")
+	time.Sleep(10 * time.Hour)
 }
